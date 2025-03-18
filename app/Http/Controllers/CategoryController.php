@@ -10,10 +10,14 @@ class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * 
+     * GET /api/categories
+     * Returns a list of all categories in JSON format
+     * Status code: 200
      */
     public function index()
     {
-        $categories=Category::all();
+        $categories = Category::all();
 
         return response()->json([
             'message' => 'Success',
@@ -21,23 +25,22 @@ class CategoryController extends Controller
         ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+   
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * POST /api/categories
+     * Creates a new category using form data
+     * Required field: name (text)
+     * Returns the created category with ID and timestamps
+     * Status code: 201
      */
     public function store(StoreCategoryRequest $request)
     {
-        $request->validated([
-            'name' => 'required|string'
-        ]);
-        $category = Category::create($request->all());
+        $validated = $request->validated();
+        $category = Category::create($validated);
+        
         return response()->json([
             'message' => 'Category created successfully',
             'data' => $category
@@ -46,29 +49,35 @@ class CategoryController extends Controller
 
     /**
      * Display the specified resource.
+     * 
+     * GET /api/categories/{id}
+     * Returns a specific category by ID
+     * Status code: 200
      */
     public function show(Category $category)
     {
-        //
+        return response()->json([
+            'message' => 'Success',
+            'data' => $category
+        ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
+     * 
+     * PUT /api/categories/{id}
+     * Updates a category using form data
+     * Required field: name (text)
+     * Returns the updated category with all fields
+     * Status code: 200
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $request->validated([
-            'name' => 'required|string'
-        ]);
-        $category->update($request->all());
+        $validated = $request->validated();
+        $category->update($validated);
+        
         return response()->json([
             'message' => 'Category updated successfully',
             'data' => $category
@@ -77,10 +86,16 @@ class CategoryController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * 
+     * DELETE /api/categories/{id}
+     * Deletes a specific category by ID
+     * Returns success message with no data
+     * Status code: 200
      */
     public function destroy(Category $category)
     {
         $category->delete();
+        
         return response()->json([
             'message' => 'Category deleted successfully'
         ], 200);
