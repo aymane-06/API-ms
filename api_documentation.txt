@@ -1,0 +1,49 @@
+/**
+     * Display a listing of the resource.
+     * 
+     * GET /api/categories
+     * Returns a list of all categories in JSON format
+     * Status code: 200
+     */
+
+
+/**
+     * Store a newly created resource in storage.
+     * 
+     * POST /api/categories
+     * Creates a new category using form data
+     * Required field: name (text)
+     * Returns the created category with ID and timestamps
+     * Status code: 201
+     */
+
+
+      /**
+     * Display the specified resource.
+     * 
+     * GET /api/categories/{id}
+     * Returns a specific category by ID
+     * Status code: 200
+     */
+
+
+     /**
+     * Update the specified resource in storage.
+     * 
+     * PUT /api/categories/{id}
+     * Updates a category using form data
+     * Required field: name (text)
+     * Returns the updated category with all fields
+     * Status code: 200
+     */
+
+
+
+     /**
+     * Remove the specified resource from storage.
+     * 
+     * DELETE /api/categories/{id}
+     * Deletes a specific category by ID
+     * Returns success message with no data
+     * Status code: 200
+     */
